@@ -1,0 +1,17 @@
+{
+  "name": "selenium-minimal-lambda",
+  "description": "",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "sls offline start",
+    "test": "",
+    "deploy": "sls deploy -s $STAGE"
+  },
+  "dependencies": {
+    "serverless": "^1.79.0",
+    "serverless-offline": "^8.3.0"
+  },
+  "devDependencies": {
+    "serverless-python-requirements": "^5.1.1"
+  }
+}

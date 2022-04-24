@@ -1,0 +1,61 @@
+  
+service: selenium-minimal-lambda
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  versionFunctions: false
+  
+  environment:
+    stage: ${self:provider.stage}
+
+custom:
+  stages:
+    - dev
+    - staging
+    - production
+
+  pythonRequirements:
+    pythonBin: python3
+    dockerizePip: non-linux
+    fileName: requirements-prod.txt
+    slim: true
+    noDeploy: 
+      - pytest
+      - boto3
+      - botocore
+      - docutils
+      - jmespath
+      - pip
+      - python-dateutil
+      - s3transfer
+      - setuptools
+      - six
+      - tensorboard
+	
+layers:
+  chrome_headless:
+    package:
+      artifact: chrome_headless.zip
+
+functions:
+  crawl:
+    handler: src.handlers.start_process.main
+    events:
+      - http:
+          method: get
+          path: crawl
+    layers: ## REPLACE WITH THE ARN OF YOUR LAYER
+      ## - arn:aws:lambda:region:XXXXXX:layer:LayerName:Y
+
+package:
+  individually: false
+  include:
+    - './src/**'
+  exclude:
+    - '**'
+
+plugins:
+  - serverless-python-requirements

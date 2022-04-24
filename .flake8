@@ -1,0 +1,11 @@
+[flake8]
+ignore = E501, E126, E127, E712, E722, F722
+exclude =
+	.ci,
+	.git,
+	.pytest_cache,
+	.serverless,
+	.vscode,
+	node_modules,
+	__pycache__,
+	venv
