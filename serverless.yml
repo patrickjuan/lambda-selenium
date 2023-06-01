@@ -48,7 +48,7 @@ functions:
           method: get
           path: crawl
     layers: ## REPLACE WITH THE ARN OF YOUR LAYER
-      ## - arn:aws:lambda:region:XXXXXX:layer:LayerName:Y
+      - arn:aws:lambda:region:XXXXXX:layer:LayerName:Y
 
 package:
   individually: false
